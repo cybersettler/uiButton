@@ -1,0 +1,12 @@
+<template class="shadow">
+    <style><%- shadowStyle %></style>
+    <button class="btn" type="button">
+        <content></content>
+    </button>
+</template>
+
+<script>
+    (function(window, document, undefined) {
+        require("websemble").frontend.createUIComponent('ui-button');
+    })(window, document);
+</script>
