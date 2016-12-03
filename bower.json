@@ -1,0 +1,22 @@
+{
+  "name": "ui-button",
+  "description": "Button web component.",
+  "main": "Controller.js",
+  "authors": [
+    "cybersettler@babylonone.com"
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "websemble",
+    "webcomponent",
+    "html5"
+  ],
+  "homepage": "https://github.com/cybersettler/uiButton",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
