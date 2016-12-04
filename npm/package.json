@@ -11,6 +11,9 @@
     "webcomponent",
     "html5"
   ],
+  "dependencies": {
+    "chalk": "^1.0.0"
+  },
   "author": "cybersettler@babylonone.com",
   "license": "Apache-2.0"
 }
