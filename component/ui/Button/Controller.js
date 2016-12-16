@@ -12,7 +12,7 @@ function ButtonController(view, model) {
   };
 
   this.updateView = function() {
-    if (view.hasAttribute('data-action')) {
+    if (view.hasAttribute('data-onactivate')) {
       bindViewRequestEvent(this);
     }
   };
@@ -24,7 +24,7 @@ function ButtonController(view, model) {
    */
   function bindViewRequestEvent(controller) {
     view.addEventListener('click', function() {
-      controller.dispatch(view.dataset);
+      controller.dispatch(view.dataset.onactivate);
     });
   }
 }
