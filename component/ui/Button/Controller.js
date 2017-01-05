@@ -4,28 +4,33 @@
  * @param {object} view - HTML element
  * @param {object} model - Model to keep state data
  */
-function ButtonController(view, model) {
-  this.super(view, model);
+function ButtonController(view, scope) {
+  this.super(view, scope);
 
-  this.onAttributeChanged = function() {
-    this.updateView();
-  };
+  if (view.hasAttribute('data-onactivate')) {
+    listenActivateEvent();
+  }
 
-  this.updateView = function() {
-    if (view.hasAttribute('data-onactivate')) {
-      bindViewRequestEvent(this);
-    }
-  };
+  if (view.hasAttribute('data-href')) {
+    listenNavigateEvent();
+  }
 
   /**
-   * Binds the request event
+   * Adds activate event listener.
    * @private
-   * @param {object} controller - The controller
    */
-  function bindViewRequestEvent(controller) {
+  function listenActivateEvent() {
     view.addEventListener('click', function() {
-      controller.dispatch(view.dataset.onactivate);
+      scope.dispatch(view.dataset.onactivate);
     });
+  }
+
+  /**
+   * Adds navigate event listener.
+   * @private
+   */
+  function listenNavigateEvent() {
+    scope.navigateTo(view.dataset.href);
   }
 }
 
