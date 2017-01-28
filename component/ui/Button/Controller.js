@@ -7,8 +7,14 @@
 function ButtonController(view, scope) {
   this.super(view, scope);
 
-  if (view.hasAttribute('data-onactivate')) {
+  if (view.hasAttribute('data-activate')) {
+    scope.bindAttribute('activate');
     listenActivateEvent();
+  }
+
+  if (view.hasAttribute('data-type')) {
+    let button = view.shadowRoot.querySelector('button');
+    button.type = view.dataset.type;
   }
 
   if (view.hasAttribute('data-href')) {
@@ -21,7 +27,7 @@ function ButtonController(view, scope) {
    */
   function listenActivateEvent() {
     view.addEventListener('click', function() {
-      scope.dispatch(view.dataset.onactivate);
+      scope.onActivate();
     });
   }
 
