@@ -36,7 +36,9 @@ function ButtonController(view, scope) {
    * @private
    */
   function listenNavigateEvent() {
-    scope.navigateTo(view.dataset.href);
+    view.addEventListener('click', function() {
+      scope.navigateTo(view.dataset.href);
+    });
   }
 }
 
