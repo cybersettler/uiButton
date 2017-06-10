@@ -35,7 +35,8 @@ function ButtonController(view, scope) {
  */
 function listenActivateEvent(view, scope) {
   view.addEventListener('click', function() {
-    scope.onActivate();
+    var data = scope.getFunctionalNotationArguments(view.dataset.activate);
+    scope.onActivate(data);
   });
 }
 
