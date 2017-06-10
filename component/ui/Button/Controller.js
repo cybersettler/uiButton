@@ -1,3 +1,5 @@
+const ButtonWidget = require('./ButtonWidget.js');
+
 /**
  * Controller of the button widget
  * @constructor
@@ -6,40 +8,45 @@
  */
 function ButtonController(view, scope) {
   this.super(view, scope);
+  var controller = this;
 
-  if (view.hasAttribute('data-activate')) {
-    scope.bindAttribute('activate');
-    listenActivateEvent();
-  }
+  scope.onAttached.then(function() {
+    if (view.hasAttribute('data-activate')) {
+      scope.bindAttribute('activate');
+      listenActivateEvent(view, scope);
+    }
 
-  if (view.hasAttribute('data-type')) {
-    let button = view.shadowRoot.querySelector('button');
-    button.type = view.dataset.type;
-  }
+    if (view.hasAttribute('data-href')) {
+      listenNavigateEvent(view, scope);
+    }
 
-  if (view.hasAttribute('data-href')) {
-    listenNavigateEvent();
-  }
+    controller.buttonWidget = new ButtonWidget(view, scope);
+    controller.buttonWidget.render();
+  });
 
-  /**
-   * Adds activate event listener.
-   * @private
-   */
-  function listenActivateEvent() {
-    view.addEventListener('click', function() {
-      scope.onActivate();
-    });
-  }
+  this.render = function() {
+    this.buttonWidget.render();
+  };
+}
 
-  /**
-   * Adds navigate event listener.
-   * @private
-   */
-  function listenNavigateEvent() {
-    view.addEventListener('click', function() {
-      scope.navigateTo(view.dataset.href);
-    });
-  }
+/**
+ * Adds activate event listener.
+ * @private
+ */
+function listenActivateEvent(view, scope) {
+  view.addEventListener('click', function() {
+    scope.onActivate();
+  });
+}
+
+/**
+ * Adds navigate event listener.
+ * @private
+ */
+function listenNavigateEvent(view, scope) {
+  view.addEventListener('click', function() {
+    scope.navigateTo(view.dataset.href);
+  });
 }
 
 module.exports = ButtonController;
