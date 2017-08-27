@@ -11,14 +11,23 @@ function ButtonController(view, scope) {
   var controller = this;
 
   scope.onAttached.then(function() {
+
+    var bindingAttributes = [];
+
+    if (view.hasAttribute('data-model')) {
+      bindingAttributes.push('model');
+    }
+
     if (view.hasAttribute('data-activate')) {
-      scope.bindAttribute('activate');
+      bindingAttributes.push('activate');
       listenActivateEvent(view, scope);
     }
 
     if (view.hasAttribute('data-href')) {
       listenNavigateEvent(view, scope);
     }
+
+    scope.bindAttributes(bindingAttributes);
 
     controller.buttonWidget = new ButtonWidget(view, scope);
     controller.buttonWidget.render();

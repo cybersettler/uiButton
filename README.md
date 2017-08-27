@@ -24,6 +24,10 @@ In your project's bower.json:
 
 ## API
 
+### data-model
+
+Data to be used
+
 ### data-activate
 
 An alternative to the click event, activate is fired
