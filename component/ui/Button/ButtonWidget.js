@@ -12,7 +12,7 @@ ButtonWidget.prototype.render = function() {
       .then(renderButtion);
 };
 
-NavbarWidget.prototype.fetchData = function() {
+ButtonWidget.prototype.fetchData = function() {
     var promises = [];
     var widget = this;
 
